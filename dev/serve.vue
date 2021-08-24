@@ -28,7 +28,7 @@ export default defineComponent({
         :max=100
         :initialValue=0
         :size=4
-        @onValueChange="changeValue"
+        @valueChange="changeValue"
     />
   </div>
 </template>

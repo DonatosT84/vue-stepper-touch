@@ -46,7 +46,7 @@ export default /*#__PURE__*/defineComponent({
       default: 'x'
     }
   },
-  emits: ['onValueChange'],
+  emits: ['valueChange'],
   setup(props, { emit }) {
     // TEMPLATE REFS
     const stepper = ref<HTMLElement | null>(null);
@@ -202,7 +202,7 @@ export default /*#__PURE__*/defineComponent({
 
     // Emit an event whenever value is changed
     watch(value, (newValue) => {
-      emit('onValueChange', { 'value' : newValue });
+      emit('valueChange', { 'value' : newValue });
     })
 
     // RENDER DOM
