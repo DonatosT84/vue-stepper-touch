@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, computed, h, onMounted, PropType } from 'vue';
+import { defineComponent, ref, computed, h, watch, onMounted, PropType } from 'vue';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 
@@ -46,14 +46,15 @@ export default /*#__PURE__*/defineComponent({
       default: 'x'
     }
   },
-  setup(props) {
-    // template refs
+  emits: ['onValueChange'],
+  setup(props, { emit }) {
+    // TEMPLATE REFS
     const stepper = ref<HTMLElement | null>(null);
     const indicator = ref<HTMLElement | null>(null);
     const minus = ref<HTMLElement | null>(null);
     const plus = ref<HTMLElement | null>(null);
 
-    // data
+    // DATA
     const start = ref<number>(0);
     const end = ref<number>(0);
     const value = ref<number>(props.initialValue);
@@ -64,11 +65,12 @@ export default /*#__PURE__*/defineComponent({
     const isHorizontal = ref<boolean>(props.axis === 'x');
     const cssVars = ref<object | null>(null);
 
-    // computed
+    // COMPUTED
     const classObject = computed<string>(() => {
       return isHorizontal.value ? 'horizontal' : 'vertical';
     })
 
+    // prepare and set css Vars
     const fullSize = props.size * multiplier.value + 'rem';
     const stepperWidth = isHorizontal.value ? fullSize : props.size + 'rem';
     const stepperHeight = isHorizontal.value ? props.size + 'rem' : fullSize;
@@ -85,7 +87,7 @@ export default /*#__PURE__*/defineComponent({
       '--stepper-height': stepperHeight
     }
 
-    // methods
+    // METHODS
     function draggableHandler() {
       if (indicator.value && stepper.value) {
         Draggable.create(indicator.value, {
@@ -153,15 +155,8 @@ export default /*#__PURE__*/defineComponent({
     function count() {
       let distance = end.value - start.value;
 
-      if (distance > 0) {
-        if (value.value + 1 <= props.max) {
-          countUp();
-        }
-      } else if (distance < 0) {
-        if (value.value - 1 >= props.min) {
-          countDown();
-        }
-      }
+      if (distance > 0 && value.value + 1 <= props.max) countUp();
+      if (distance < 0 && value.value - 1 >= props.min) countDown();
 
       toggleMinusPlus();
     }
@@ -205,6 +200,12 @@ export default /*#__PURE__*/defineComponent({
       draggableHandler();
     });
 
+    // Emit an event whenever value is changed
+    watch(value, (newValue) => {
+      emit('onValueChange', { 'value' : newValue });
+    })
+
+    // RENDER DOM
     return () => h('div', { 'class': 'stepper', ref : stepper, style : cssVars.value}, [
         h('div', { 'class' : 'indicator', ref : indicator, style : cssVars.value}, [value.value]),
         h('span', { 'class' : `minus ${classObject.value}`, ref : minus, style : cssVars.value, onClick : countDownHandler }, '−'),

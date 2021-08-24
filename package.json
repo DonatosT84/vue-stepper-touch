@@ -1,9 +1,9 @@
 {
   "name": "vue-stepper-touch",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "author": "Donatos Tassis",
   "license": "MIT",
-  "description": "Stepper Touch for Vue 3 based on a Dribbble showcase designed by Oleg Frolov",
+  "description": "Stepper Touch for Vue 3 based on a Dribble showcase designed by Oleg Frolov",
   "main": "dist/VueStepperTouch.ssr.js",
   "browser": "dist/VueStepperTouch.esm.js",
   "module": "dist/VueStepperTouch.esm.js",

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
 import VueStepperTouch from '@/VueStepperTouch.vue';
 
@@ -6,6 +6,11 @@ export default defineComponent({
   name: 'ServeDev',
   components: {
     VueStepperTouch
+  },
+  methods: {
+    changeValue(payload) {
+      return payload.value
+    }
   }
 });
 </script>
@@ -23,6 +28,7 @@ export default defineComponent({
         :max=100
         :initialValue=0
         :size=4
+        @onValueChange="changeValue"
     />
   </div>
 </template>
