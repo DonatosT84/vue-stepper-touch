@@ -79,7 +79,7 @@ export default /*#__PURE__*/defineComponent({
       '--font-family': props.fontFamily,
       '--color': props.color,
       '--background': props.background,
-      '--background-alpha': convertHex(props.background, props.opacity),
+      '--background-alpha': convertHex(props.color, props.opacity),
       '--indicator-size': props.size - (props.size / 20) + 'rem',
       '--stepper-width': stepperWidth,
       '--stepper-height': stepperHeight

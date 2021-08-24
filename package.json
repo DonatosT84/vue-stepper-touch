@@ -1,7 +1,9 @@
 {
   "name": "vue-stepper-touch",
   "version": "1.0.3",
-  "description": "",
+  "author": "Donatos Tassis",
+  "license": "MIT",
+  "description": "Stepper Touch for Vue 3 based on a Dribbble showcase designed by Oleg Frolov",
   "main": "dist/VueStepperTouch.ssr.js",
   "browser": "dist/VueStepperTouch.esm.js",
   "module": "dist/VueStepperTouch.esm.js",
@@ -10,6 +12,15 @@
   "files": [
     "dist/*",
     "src/**/*.vue"
+  ],
+  "keywords": [
+    "stepper-touch",
+    "stepper",
+    "vue",
+    "vue-stepper-touch",
+    "counter",
+    "draggable",
+    "drag"
   ],
   "sideEffects": false,
   "scripts": {
@@ -20,6 +31,10 @@
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
     "postbuild": "rimraf ./dist/types/dev ./dist/types/src/entry.d.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DonatosT84/vue-stepper-touch.git"
   },
   "dependencies": {
     "gsap": "^3.7.1"
