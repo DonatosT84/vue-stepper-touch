@@ -33,7 +33,7 @@
     :max=100
     :initialValue=0
     :size=4
-    @onValueChange="changeValue"
+    @valueChange="changeValue"
 />
 ```
 ### Props configuration
@@ -49,4 +49,4 @@
 | max            | Number    | the maximum value that the counter can take                                                                              |
 | initialValue   | Number    | the initial value that the counter will take on first load                                                               |
 | size           | Number    | the size of the stepper element in `rem`'s <strong>e.g. :</strong> `3.5` or `3`                                                              |
-| @onValueChange | Callback  | event listener with a callback function that accepts a payload as parameter which includes the changed `value` <br /> <strong>e.g. :</strong> a method like : ``changeValue(payload) { return payload.value }``|
+| @valueChange   | Callback  | event listener with a callback function that accepts a payload as parameter which includes the changed `value` <br /> <strong>e.g. :</strong> a method like : ``changeValue(payload) { return payload.value }``|
